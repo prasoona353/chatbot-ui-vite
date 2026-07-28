@@ -1,0 +1,91 @@
+:host {
+  font-family: var(--chatbot-font, system-ui, -apple-system, sans-serif);
+  
+  /* 🎯 DYNAMIC: Inherit accents independently from Angular stylesheets */
+  --shared-brand-color: var(--chatbot-brand-bg, #0056b3); /* Header, Footer Button, Launcher */
+  --shared-font-color: var(--chatbot-text-color, #ffffff);  /* Header text, Button text */
+  
+  /* 🚀 DYNAMIC BOT BUBBLE CONFIGURATIONS */
+  --bot-bubble-bg: var(--chatbot-bot-bubble-bg, #e9ecef);  /* Unique Bot Bubble Background variable */
+  --bot-bubble-text: var(--chatbot-bot-bubble-text, #212529); /* Unique Bot Bubble Font Color variable */
+
+  /* 🔒 FIXED: Main window containers, input bars, and text entry fields are locked to white */
+  --fixed-white-bg: #ffffff;
+  --fixed-dark-text: #212529; 
+}
+
+/* Floating Launcher Action Bubble */
+/* Inside src/chatbot.css -> Update this selector */
+
+.launcher {
+  position: fixed;   
+  width: 60px; height: 60px;
+  background: var(--shared-brand-color); color: var(--shared-font-color);
+  border-radius: 50%; border: none; font-size: 24px;
+  z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+  cursor: move;
+  user-select: none;
+}
+
+
+/* Header Segment */
+.header {
+  background: var(--shared-brand-color); padding: 15px; display: flex;
+  justify-content: space-between; color: var(--shared-font-color); font-weight: bold;
+}
+.close-btn { background: none; border: none; color: var(--shared-font-color); opacity: 0.7; font-size: 20px; cursor: pointer; }
+
+/* Dynamic Chat Stream History Layout */
+.history { 
+  flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; 
+  background: var(--fixed-white-bg);
+}
+
+/* Text Message Bubbles */
+.bubble { max-width: 80%; padding: 10px 14px; border-radius: 8px; font-size: 14px; word-wrap: break-word; }
+.user { 
+  background: var(--shared-brand-color); color: var(--shared-font-color); align-self: flex-end; 
+}
+
+/* 🚀 FIXED: Bot bubble now reads entirely separate dynamic values independent of the window background */
+.bot { 
+  background: var(--bot-bubble-bg); 
+  color: var(--bot-bubble-text);   
+  align-self: flex-start; 
+  border: none;
+}
+
+/* Input Footer Dock Container */
+.input-bar { 
+  display: flex; padding: 10px; background: var(--fixed-white-bg); border-top: 1px solid #e0e0e0; gap: 8px; 
+}
+.input-bar input { 
+  flex: 1; background: var(--fixed-white-bg); color: var(--fixed-dark-text);     
+  border: 1px solid #cccccc; padding: 10px; border-radius: 6px; 
+}
+.input-bar button { 
+  background: var(--shared-brand-color); color: var(--shared-font-color);       
+  border: none; padding: 0 16px; border-radius: 6px; font-weight: bold; cursor: pointer; 
+}
+
+/* JUMPING DOTS TYPING LOADER STATUS */
+.typing-indicator span {
+  width: 6px; height: 6px; 
+  background-color: var(--bot-bubble-text); /* Typing dots match bot text color dynamically */
+  border-radius: 50%; display: inline-block; animation: jump 1.4s infinite ease-in-out both;
+}
+
+.chat-box {
+  position: fixed; 
+  right: 20px;
+  bottom: 90px;
+  
+  border: none; 
+  border-radius: 12px;
+  display: flex; flex-direction: column; overflow: hidden; z-index: 9999;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  width: 340px; height: 480px;
+}
+
